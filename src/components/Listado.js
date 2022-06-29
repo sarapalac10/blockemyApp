@@ -43,7 +43,7 @@ function Listado() {
               <Card.Text>
                 {movie.overview.substring(0,150)}...
               </Card.Text>
-              <Button variant="primary">Añadir a mi lista</Button>
+              <Button variant="outline-danger">Añadir a mi lista</Button>
             </Card.Body>
           </Card>
           )
