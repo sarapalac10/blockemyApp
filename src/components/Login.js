@@ -14,9 +14,8 @@ function Login() {
         const password = e.target.password.value;
         const regexEmail =  /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-        console.log(password)
-        console.log(email)
-
+        // console.log(password)
+        // console.log(email)
 
         if(email === '' || password === ''){
             swAlert(
@@ -41,7 +40,7 @@ function Login() {
             .then(respuesta=> {
                 swAlert(<h2>Perfecto!</h2>)
                 const tokenRecibido = respuesta.data.token
-                console.log(tokenRecibido)
+                // console.log(tokenRecibido)
                 localStorage.setItem('token', tokenRecibido);
                 navigate("/listado")
             })
@@ -49,11 +48,11 @@ function Login() {
     }
 
   return (
+    <div>
+        {/* <img src='https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80'  alt="fondo de sala de cine"/> */}
 
-    <Card style={{ width: '18rem' }} className ="mx-auto py-2 mt-10 justify-content-center align-items-center">
-    
+    <Card style={{ width: '18rem', top:'100' }} className ="mx-auto justify-content-center align-items-center">
     <Card.Title>Login</Card.Title>
-
     <form onSubmit={submitHandler}>
         <label>
             <Card.Subtitle className="mb-2 text-muted">Correo electrónico</Card.Subtitle>
@@ -68,8 +67,14 @@ function Login() {
         <Button type='submit' variant="outline-success">Ingresar</Button>
     </form>
 
+    <br/> 
+    <Card.Text>
+        Correo: challenge@alkemy.org
+        Contraseña: react
+    </Card.Text>
     </Card>
 
+    </div>
   )
 }
 
