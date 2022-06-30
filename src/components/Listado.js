@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Card, Button, CardGroup } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Card, Button} from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "./Footer";
+import swAlert from '@sweetalert/with-react'
 
 function Listado() {
   const navigate = useNavigate();
@@ -16,9 +17,15 @@ function Listado() {
       const apiData = response.data
       setMovieList(apiData.results)
     })
+    .catch(error => {
+      //console.log(error)
+      swAlert(
+        <h2>Ha ocurrido un error. Intenta más tarde</h2>
+      )
+    })
   }, [setMovieList]);
 
-  //console.log(movieList)
+  console.log(movieList)
   
 
   useEffect(() => {
@@ -36,14 +43,16 @@ function Listado() {
       {
         movieList.map( (movie, idx) => {
           return (
-            <Card style={{ width: "18rem" }}>
+            <Card style={{ width: "18rem" }} key={idx}>
             <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`} />
             <Card.Body>
               <Card.Title>{movie.original_title}</Card.Title>
               <Card.Text>
                 {movie.overview.substring(0,150)}...
               </Card.Text>
-              <Button variant="outline-danger">Añadir a mi lista</Button>
+              <Link to={`/detalle?movieID=${movie.id}`}>
+                <Button variant="outline-danger">Añadir a mi lista</Button>
+              </Link>
             </Card.Body>
           </Card>
           )
